@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :login, only: [:create]
   resources :users
 
-  get "/test", to: "test#index"
+  get "/tests", to: "tests#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

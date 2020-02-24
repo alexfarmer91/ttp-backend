@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
-      render json: { token: token(user.id), user_id: user.id  }
+      render json: { token: token(user.id), user_id: user.id, first_name: user.first_name, cash: user.cash  }
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end

@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_150117) do
     t.bigint "user_id", null: false
     t.float "price"
     t.boolean "buy"
-    t.string "trade_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_trades_on_user_id"

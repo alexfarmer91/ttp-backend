@@ -32,8 +32,14 @@ class PortfolioItemsController < ApplicationController
     
       def destroy
         portfolio_item = PortfolioItem.find(params.require(:id))
-        portfolio_item.destroy
-        render json: portfolio_item
+        if portfolio_item[:quantity] > portfolio_item_params[:quantity]
+          portfolio_item.update(quantity: (portfolio_item_params[:quantity].to_i - portfolio_item[:quantity].to_i))
+          render json: pi
+          return
+        else 
+          portfolio_item.destroy
+          render json: portfolio_item
+        end 
       end 
 
       private 

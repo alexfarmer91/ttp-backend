@@ -31,7 +31,7 @@ class PortfolioItemsController < ApplicationController
       end
     
       def destroy
-        portfolio_item = PortfolioItem.find(params.require(:id))
+        portfolio_item = PortfolioItem.find(id: portfolio_item_params[:quantity])
         if portfolio_item[:quantity] > portfolio_item_params[:quantity]
           portfolio_item.update(quantity: (portfolio_item_params[:quantity].to_i - portfolio_item[:quantity].to_i))
           render json: pi
@@ -44,6 +44,6 @@ class PortfolioItemsController < ApplicationController
 
       private 
       def portfolio_item_params
-        params.require(:portfolio_item).permit(:ticker, :quantity, :user_id)
+        params.require(:portfolio_item).permit(:id, :ticker, :quantity, :user_id)
       end
 end

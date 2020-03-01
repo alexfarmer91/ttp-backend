@@ -11,7 +11,7 @@ class PortfolioItemsController < ApplicationController
     def create
       pi = PortfolioItem.find_by(ticker: portfolio_item_params[:ticker], user_id: portfolio_item_params[:user_id])
       if !pi.nil?
-        pi.update(quantity: (portfolio_item_params[:quantity] + pi[:quantity]))
+        pi.update(quantity: (portfolio_item_params[:quantity].to_i + pi[:quantity].to_i))
         render json: pi
         return
       else

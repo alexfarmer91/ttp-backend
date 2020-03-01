@@ -9,7 +9,7 @@ class PortfolioItemsController < ApplicationController
       end
     
     def create
-      pi = PortfolioItem.find(ticker: portfolio_item_params[:ticker], user_id: portfolio_item_params[:user_id])
+      pi = PortfolioItem.find_by(ticker: portfolio_item_params[:ticker], user_id: portfolio_item_params[:user_id])
       if !pi.nil?
         pi.update(portfolio_item_params)
         render json: pi

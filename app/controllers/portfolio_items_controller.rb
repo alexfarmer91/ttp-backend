@@ -9,12 +9,18 @@ class PortfolioItemsController < ApplicationController
       end
     
     def create
+      pi = PortfolioItem.find(params.require(:ticker, :user_id))
+      if !pi.nil?
+        pi.update(portfolio_item_params)
+        render json: pi
+      else
         portfolio_item = PortfolioItem.create(portfolio_item_params)
         if portfolio_item.valid?
           render json: portfolio_item
         else
           render json: { errors: portfolio_item.errors.full_messages }, status: :unprocessable_entity
         end
+      end 
       end
     
       def update
